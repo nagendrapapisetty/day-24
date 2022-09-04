@@ -9,6 +9,7 @@ public class AddressBookImplement implements MultipleAddressBook {
     public ArrayList<AddressBook> entries;
     public int count = 0;
     Scanner obj = new Scanner(System.in);
+
     // Constructor
     public AddressBookImplement() {
         book = new HashMap<>();
@@ -69,6 +70,7 @@ public class AddressBookImplement implements MultipleAddressBook {
         if (details == null) return true;
         return false;
     }
+
     //    This method helps to edit the details
     @Override
     public void editContact() {
@@ -144,6 +146,7 @@ public class AddressBookImplement implements MultipleAddressBook {
             }
         }
     }
+
     // This method helps to delete the contact details
     @Override
     public void deleteEntry() {
@@ -184,7 +187,7 @@ public class AddressBookImplement implements MultipleAddressBook {
                 sortAlphabetically();
                 break;
             case 9:
-                //sortCityStateOrZip();
+                sortCityStateOrZip();
                 break;
             case 0:
                 conditon = false;
@@ -194,9 +197,11 @@ public class AddressBookImplement implements MultipleAddressBook {
         }
         return conditon;
     }
+
     private void getCountOfPersons() {
         System.out.println("total count is " + count);
     }
+
     public void viewPersonByCity() {
         System.out.println("Enter city");
         String location = obj.next();
@@ -207,6 +212,7 @@ public class AddressBookImplement implements MultipleAddressBook {
         else
             System.out.println("no records found");
     }
+
     public void viewPersonByState() {
         System.out.println("Enter state");
         String location = obj.next();
@@ -217,6 +223,7 @@ public class AddressBookImplement implements MultipleAddressBook {
         else
             System.out.println("no records found");
     }
+
     public void getContactByCityOrState() {
         System.out.println("Enter city or state");
         String location = obj.next();
@@ -232,10 +239,30 @@ public class AddressBookImplement implements MultipleAddressBook {
     }
 
     public void sortAlphabetically() {
-        book.entrySet().stream().
-                sorted(Map.Entry.comparingByKey())
+        book.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
                 .forEach(System.out::println);
     }
+
+    public void sortCityStateOrZip() {
+        System.out.println("sort by 1:city 2:state 3:zip");
+        int check = obj.nextInt();
+        switch (check) {
+            case 1:
+                city.entrySet().stream()
+                        .sorted(Map.Entry.comparingByKey())
+                        .forEach(System.out::println);
+                break;
+            case 2:
+                state.entrySet().stream()
+                        .sorted(Map.Entry.comparingByKey())
+                        .forEach(System.out::println);
+                break;
+            case 3:
+                zip.entrySet().stream()
+                        .sorted(Map.Entry.comparingByKey())
+                        .forEach(System.out::println);
+                break;
+        }
+    }
 }
-
-

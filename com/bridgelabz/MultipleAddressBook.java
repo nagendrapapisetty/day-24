@@ -7,6 +7,7 @@ public interface MultipleAddressBook {
     public void getContact();
 
     boolean equals(String firstName);
+
     public void editContact();
 
     public void deleteEntry();
